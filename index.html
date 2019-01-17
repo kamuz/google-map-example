@@ -89,6 +89,11 @@
                     // Add marker
                     addMarker(markers[i]);
                 }
+                // Listen for click on map
+                google.maps.event.addListener(map, 'click', function(event){
+                    // Add marker
+                    addMarker({coords: event.latLng});
+                });
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP1lvNVYgHVwxMGa0pjlscCxWHJu8er2U&callback=initMap"

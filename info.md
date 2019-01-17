@@ -312,3 +312,12 @@ function initMap(){
     }
 }
 ```
+
+Чтобы при каждом клике по карте у нас проставлялся маркер, можно сделать так:
+
+```js
+google.maps.event.addListener(map, 'click', function(event){
+    // Add marker
+    addMarker({coords: event.latLng});
+});
+```
