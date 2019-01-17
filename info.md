@@ -22,7 +22,7 @@
 </html>
 ```
 
-Теперь создадим блок, куда мы будем вставлять нашу карту `<div id="map"></div>`. В функции `initMap()` мы описываем инициализацию карты. В начале мы создаём объект `google.maps.Map` на вход которого первым параметром мы передаём элемент куда нужно вставить карту, а вторым набор параметров для нашей карты.
+Теперь создадим блок, куда мы будем вставлять нашу карту `<div id="map"></div>`. В функции `initMap()` мы описываем инициализацию карты. В начале мы создаём объект `Map` на вход которого первым параметром мы передаём элемент куда нужно вставить карту, а вторым набор параметров для нашей карты.
 
 ```html
 <!DOCTYPE html>
@@ -59,4 +59,30 @@
             async defer></script>
     </body>
 </html>
+```
+
+Чтобы добавить маркет нужно использовать объект `Marker` с переданным набором параметров:
+
+```js
+function initMap(){
+    // Map element
+    var map = document.getElementById('map');
+    // Coordinates
+    myLatLng = {
+        lat: 50.4501,
+        lng: 30.5234
+    }
+    // Map options
+    var myOptions = {
+        zoom: 10,
+        center: myLatLng
+    }
+    // New map
+    var map = new google.maps.Map(map, myOptions);
+    // Add marker
+    var marker = new google.maps.Marker({
+        position:myLatLng,
+        map: map,
+    });
+}
 ```
