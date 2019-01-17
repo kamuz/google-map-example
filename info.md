@@ -199,3 +199,36 @@ function addMarker(props){
     }
 }
 ```
+
+Примерно таким же образом мы поступим с контентом для всплывающего окошка:
+
+```js
+function addMarker(props){
+    var marker = new google.maps.Marker({
+        position: props.coords,
+        map: map
+    });
+    // Check custom icon
+    if(props.iconImage){
+        // Set icon image
+        marker.setIcon(props.iconImage)
+    }
+    // Check content
+    if(props.content){
+        // Info Window
+        var infoWindow = new google.maps.InfoWindow({
+            content: props.content
+        });
+        // Show Info Window by click
+        marker.addListener('click', function(){
+            infoWindow.open(map, marker);
+        });
+    }
+    
+}
+addMarker({
+    coords:{lat: 50.4501, lng: 30.5234},
+    iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+    content: "<h2>Kiev is a beautiful city</h2>"
+});
+```
