@@ -6,14 +6,13 @@
         <meta name="viewport" content="initial-scale=1.0">
         <style>
             #map {
-                height: 400px;
-                width: 600px;
+                height: 600px;
+                width: 900px;
                 margin: 0 auto;
             }
         </style>
     </head>
     <body>
-        <h1>Google Map</h1>
         <div id="map"></div>
         <script>
             function initMap(){
@@ -21,29 +20,36 @@
                 var map = document.getElementById('map');
                 // Coordinates
                 myLatLng = {
-                    lat: 50.4501,
-                    lng: 30.5234
+                    lat: 48.3794,
+                    lng: 31.1656
                 }
                 // Map Options
                 var myOptions = {
-                    zoom: 10,
+                    zoom: 6,
                     center: myLatLng
                 }
                 // New Map
                 var map = new google.maps.Map(map, myOptions);
                 // Add Marker
-                var marker = new google.maps.Marker({
-                    position:myLatLng,
-                    map: map,
-                    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
-                });
+                function addMarker(coords){
+                    var marker = new google.maps.Marker({
+                        position: coords,
+                        map: map
+                    });
+                }
+
+                addMarker({lat: 50.4501, lng: 30.5234});
+                addMarker({lat: 49.5883, lng: 34.5514});
+                addMarker({lat: 49.9935, lng: 36.2304});
+                addMarker({lat: 48.4647, lng: 35.0462});
+                
                 // Info Window
-                var infoWindow = new google.maps.InfoWindow({
+                /*var infoWindow = new google.maps.InfoWindow({
                     content: '<h1>Kiev, Ukraine</h1>'
                 });
                 marker.addListener('click', function(){
                     infoWindow.open(map, marker);
-                });
+                });*/
             }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP1lvNVYgHVwxMGa0pjlscCxWHJu8er2U&callback=initMap"

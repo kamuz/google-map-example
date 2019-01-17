@@ -111,3 +111,57 @@ marker.addListener('click', function(){
     infoWindow.open(map, marker);
 });
 ```
+
+Чтобы добавить несколько маркеров на карту мы не будем дублировать один и тот же код, а вместо этого создадим отдельную функцию:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <meta name="viewport" content="initial-scale=1.0">
+        <style>
+            #map {
+                height: 600px;
+                width: 900px;
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="map"></div>
+        <script>
+            function initMap(){
+                // Map element
+                var map = document.getElementById('map');
+                // Coordinates
+                myLatLng = {
+                    lat: 48.3794,
+                    lng: 31.1656
+                }
+                // Map Options
+                var myOptions = {
+                    zoom: 6,
+                    center: myLatLng
+                }
+                // New Map
+                var map = new google.maps.Map(map, myOptions);
+                // Add Markers
+                function addMarker(coords){
+                    var marker = new google.maps.Marker({
+                        position: coords,
+                        map: map
+                    });
+                }
+                addMarker({lat: 50.4501, lng: 30.5234});
+                addMarker({lat: 49.5883, lng: 34.5514});
+                addMarker({lat: 49.9935, lng: 36.2304});
+                addMarker({lat: 48.4647, lng: 35.0462});
+            }
+        </script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAP1lvNVYgHVwxMGa0pjlscCxWHJu8er2U&callback=initMap"
+            async defer></script>
+    </body>
+</html>
+```
