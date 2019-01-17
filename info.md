@@ -186,4 +186,16 @@ addMarker({coords:{lat: 49.9935, lng: 36.2304}});
 addMarker({coords:{lat: 48.4647, lng: 35.0462}});
 ```
 
-Таким образом вы изменили иконку только для одного маркера (Kiev).
+Таким образом вы изменили иконку только для одного маркера (Kiev). Этот пример нормально работает, но если мы не задали иконку, но у нас будет неопределённая переменная, поэтому лучше сделать проверку и использовать метод `setIcon()` для задания иконки.
+
+```js
+function addMarker(props){
+    var marker = new google.maps.Marker({
+        position: props.coords,
+        map: map
+    });
+    if(props.iconImage){
+        marker.setIcon(props.iconImage)
+    }
+}
+```

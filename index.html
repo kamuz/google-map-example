@@ -30,13 +30,17 @@
                 }
                 // New Map
                 var map = new google.maps.Map(map, myOptions);
-                // Add Marker
+                // Add Marker function
                 function addMarker(props){
                     var marker = new google.maps.Marker({
                         position: props.coords,
-                        map: map,
-                        icon: props.iconImage
+                        map: map
                     });
+                    // Check custom icon
+                    if(props.iconImage){
+                        // Set icon image
+                        marker.setIcon(props.iconImage)
+                    }
                 }
 
                 addMarker({
