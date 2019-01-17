@@ -165,3 +165,25 @@ marker.addListener('click', function(){
     </body>
 </html>
 ```
+
+Существует множество реализаций как избежать дублирования кода и сделать наш код более удобным и гибким для повторного использования, например занесём все наши свойства в отдельный объект и будем обращаться к его свойствам во время вызова определённого маркера.
+
+```js
+function addMarker(props){
+    var marker = new google.maps.Marker({
+        position: props.coords,
+        map: map,
+        icon: props.iconImage
+    });
+}
+
+addMarker({
+    coords:{lat: 50.4501, lng: 30.5234},
+    iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+});
+addMarker({coords:{lat: 49.5883, lng: 34.5514}});
+addMarker({coords:{lat: 49.9935, lng: 36.2304}});
+addMarker({coords:{lat: 48.4647, lng: 35.0462}});
+```
+
+Таким образом вы изменили иконку только для одного маркера (Kiev).
