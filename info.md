@@ -61,6 +61,8 @@
 </html>
 ```
 
+Чтобы быстро получить от Google необходимые координаты, можно ввести запрос следующего вида - `kiev coordinates`. Название переменной с картой желательно называть `map` иначе могут быть ошибки в консоли и вы не получите желаемого результата.
+
 Чтобы добавить маркет нужно использовать объект `Marker` с переданным набором параметров:
 
 ```js
@@ -85,4 +87,14 @@ function initMap(){
         map: map,
     });
 }
+```
+
+Чтобы указать пользовательскую иконку для маркера нужно в свойство `icon` передать путь к изображению:
+
+```js
+var marker = new google.maps.Marker({
+    position:myLatLng,
+    map: map,
+    icon: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png'
+});
 ```
