@@ -232,3 +232,83 @@ addMarker({
     content: "<h2>Kiev is a beautiful city</h2>"
 });
 ```
+
+Чтобы не вызывать каждый раз метод `addMarker()` мы можем создать массив с метками, а в цикле перебрать этот массив и на каждой итерации запускать метод `addMarker()`:
+
+```js
+function initMap(){
+    // Map element
+    var map = document.getElementById('map');
+    // Coordinates
+    myLatLng = {
+        lat: 48.3794,
+        lng: 31.1656
+    }
+    // Map Options
+    var myOptions = {
+        zoom: 6,
+        center: myLatLng
+    }
+    // New Map
+    var map = new google.maps.Map(map, myOptions);
+    // Add Marker function
+    function addMarker(props){
+        var marker = new google.maps.Marker({
+            position: props.coords,
+            map: map
+        });
+        // Check custom icon
+        if(props.iconImage){
+            // Set icon image
+            marker.setIcon(props.iconImage)
+        }
+        // Check content
+        if(props.content){
+            // Info Window
+            var infoWindow = new google.maps.InfoWindow({
+                content: props.content
+            });
+            // Show Info Window by click
+            marker.addListener('click', function(){
+                infoWindow.open(map, marker);
+            });
+        }
+        
+    }
+    // Array of markers
+    var markers = [
+        {
+            coords: {
+                lat: 50.4501,
+                lng: 30.5234
+            },
+            iconImage: 'https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png',
+            content: "<h2>Kiev is a beautiful city</h2>"
+        },
+        {
+            coords: {
+                lat: 49.5883,
+                lng: 34.5514
+            },
+            content: "<h2>Poltava is my homeland</h2>"
+        },
+        {
+            coords: {
+                lat: 49.9935,
+                lng: 36.2304
+            }
+        },
+        {
+            coords: {
+                lat: 48.4647,
+                lng: 35.0462
+            }
+        }
+    ];
+    // Loop through markers
+    for( var i = 0; i < markers.length; i++ ){
+        // Add marker
+        addMarker(markers[i]);
+    }
+}
+```
